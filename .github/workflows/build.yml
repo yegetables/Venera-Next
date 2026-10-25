@@ -2,6 +2,26 @@ name: 构建
 run-name: 构建 ${{ github.ref_name }}
 
 on:
+  workflow_dispatch:
+    inputs:
+      build_android:
+        type: boolean
+        default: false
+      build_windows:
+        type: boolean
+        default: true
+      build_macos:
+        type: boolean
+        default: false
+      build_ios:
+        type: boolean
+        default: false
+      build_linux_x64:
+        type: boolean
+        default: false
+      build_linux_arm64:
+        type: boolean
+        default: false
   workflow_call:
     inputs:
       build_android:
