@@ -1,0 +1,31 @@
+name: 仅构建 Windows
+
+on:
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  Confirm:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - name: 显示将构建的提交
+        run: |
+          echo "ref_name=${{ github.ref_name }}"
+          echo "sha=$(git rev-parse HEAD)"
+          git log -1 --stat --oneline
+
+  Build_Windows:
+    needs: Confirm
+    uses: ./.github/workflows/build.yml
+    with:
+      build_android: false
+      build_windows: true
+      build_macos: false
+      build_ios: false
+      build_linux_x64: false
+      build_linux_arm64: false
+    secrets: inherit
