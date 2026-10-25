@@ -153,7 +153,7 @@ class MyLogInterceptor extends Interceptor {
 }
 
 class AppDio with DioMixin {
-  AppDio([BaseOptions? options]) : this._(options, false);
+  AppDio([BaseOptions? options]) : this._(options, true);
 
   AppDio.forImages([BaseOptions? options]) : this._(options, true);
 
@@ -220,7 +220,7 @@ class AppDio with DioMixin {
 class RHttpAdapter implements HttpClientAdapter {
   RHttpAdapter({
     RHttpStreamCallFactory? startStreamCall,
-    this.allowImageHttp3Fallback = false,
+    this.allowImageHttp3Fallback = true,
   }) : _startStreamCall = startStreamCall;
 
   final RHttpStreamCallFactory? _startStreamCall;
